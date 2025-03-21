@@ -3,11 +3,22 @@ package com.ProjetoWebServices.ProjetoWebServices.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity //Diz para o JPA que é uma tabela
+@Table(name = "tb_user") //renomear a tabela pois a palavra user é reservada no h2 
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id // Diz que é a Primary Key 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //valor auto incrementado
 	private Long id;
+	
 	private String name;
 	private String email;
 	private String phone;
