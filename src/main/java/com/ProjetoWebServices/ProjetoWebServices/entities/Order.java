@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.ProjetoWebServices.ProjetoWebServices.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -39,6 +42,7 @@ public class Order implements Serializable{
 	private User client;
 	
 	@OneToMany(mappedBy = "id.order")
+	@Fetch(FetchMode.JOIN)
 	private Set<OrderItem> items = new HashSet<>();
 	
 	public Order() {
