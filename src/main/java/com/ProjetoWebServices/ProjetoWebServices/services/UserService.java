@@ -22,4 +22,21 @@ public class UserService {
 		Optional<User> objOptional = repository.findById(Id);
 		return objOptional.get();
 	}
+	public User insert(User obj) {
+		return repository.save(obj);
+	}
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	public User update(Long id, User obj) {
+		User entity = repository.getReferenceById(id); //não vai no banco de dados, ele retorna um objeto monitorado pelo jpa
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+	private void updateData(User entity, User obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+		
+	}
 }
